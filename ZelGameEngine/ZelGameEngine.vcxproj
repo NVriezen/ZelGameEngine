@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{35FC1418-B123-4CD5-8E58-82792DAF17CF}</ProjectGuid>
+    <RootNamespace>ZelGameEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(solutionDir)ZelGameEngine\platforms\windows\include\;D:\c++\GLFW\glfw-3.3.2.bin.WIN32\include;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\c++\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(solutionDir)ZelGameEngine\platforms\windows\include\;D:\c++\GLFW\glfw-3.3.2.bin.WIN32\include;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\c++\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\include\;D:\c++\GLFW\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\c++\GLFW\glfw-3.3.2.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)_$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(Configuration)\$(ProjectName)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\include\;D:\c++\GLFW\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\c++\GLFW\glfw-3.3.2.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)_$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(Configuration)\$(ProjectName)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\glad\glad.h" />
+    <ClInclude Include="include\zel_application.h" />
+    <ClInclude Include="include\zel_base.h" />
+    <ClInclude Include="include\zel_api.h" />
+    <ClInclude Include="include\zel_component_base.h" />
+    <ClInclude Include="include\zel_component_class.h" />
+    <ClInclude Include="include\zel_component_transform.h" />
+    <ClInclude Include="include\zel_ecs.h" />
+    <ClInclude Include="include\zel_engine_settings.h" />
+    <ClInclude Include="include\zel_io.h" />
+    <ClInclude Include="include\zel_level.h" />
+    <ClInclude Include="include\zel_logging.h" />
+    <ClInclude Include="include\zel_math.h" />
+    <ClInclude Include="include\zel_platform_base.h" />
+    <ClInclude Include="include\zel_platform_entry.h" />
+    <ClInclude Include="include\zel_platform_utils.h" />
+    <ClInclude Include="include\zel_profiling.h" />
+    <ClInclude Include="include\zel_profiling_timer.h" />
+    <ClInclude Include="include\zel_rendering_utils.h" />
+    <ClInclude Include="include\zel_render_api.h" />
+    <ClInclude Include="include\zel_types.h" />
+    <ClInclude Include="include\zel_window.h" />
+    <ClInclude Include="platforms\windows\include\glad\glad.h" />
+    <ClInclude Include="platforms\windows\include\KHR\khrplatform.h" />
+    <ClInclude Include="platforms\windows\include\zel_windows_entry.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="platforms\windows\source\glad.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_io.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_render_api.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_utils.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_window.cpp" />
+    <ClCompile Include="source\zel_component_base.cpp" />
+    <ClCompile Include="source\zel_engine_settings.cpp" />
+    <ClCompile Include="source\zel_logging.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_profiling.cpp" />
+    <ClCompile Include="source\zel_rendering_utils.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
