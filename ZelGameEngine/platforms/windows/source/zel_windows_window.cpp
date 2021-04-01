@@ -49,7 +49,7 @@ uint8_t zel_window_create(zel_window_t* window)
 	glfwSetKeyCallback(glfw_window, key_callback);
 	glfwSetFramebufferSizeCallback(glfw_window, framebuffer_size_callback);
 
-	//glfwSwapInterval(0);
+	glfwSwapInterval(0);
 
 	(*window) = (zel_window_t)glfw_window;
 

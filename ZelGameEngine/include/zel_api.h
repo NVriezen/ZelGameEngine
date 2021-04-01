@@ -15,7 +15,7 @@
 #include <zel_component_class.h>
 
 // Standard ECS Components
-#include <zel_component_transform.h>
+#include <zel_component_builtin.h>
 
 // Platform specific definitions
 #include <zel_platform_entry.h>

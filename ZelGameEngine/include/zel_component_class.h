@@ -62,13 +62,12 @@ public:
 
 	T* get_component(zel_entity_id entity)
 	{
-		PROFILE_FUNCTION();
-
 		zel_index entity_index = ZEL_GET_INDEX(entity);
 		zel_generation entity_generation = ZEL_GET_GENERATION(entity);
 		zel_generational_ptr component_pointer = entity_to_component[entity_index];
 		if (component_pointer.generation != entity_generation)
 		{
+			zel_print("zel_component class, get component return nullptr;");
 			return nullptr;
 		}
 

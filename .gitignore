@@ -4,9 +4,10 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Zel-specific files
-[Aa]pplication
+#[Aa]pplication
 [Tt]emp
 [Bb]in
+[Aa]pplication/runtime_profile*
 
 # User-specific files
 *.rsuser

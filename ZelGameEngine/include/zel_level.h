@@ -36,6 +36,97 @@ struct zel_component_t
 	uint32_t component_size;
 };
 
+template <typename... T>
+struct zel_entities_list
+{
+	zel_entities_list(zel_level_t* level) 
+		: _level(level)
+	{
+
+	}
+
+	struct iterator
+	{
+		iterator(zel_level_t* level, zel_index entity_index) 
+			: _level(level), _entity_index(entity_index)
+		{
+		};
+
+		zel_entity_id operator*() const
+		{
+			//give back entityid
+			return ZEL_CREATE_ID(_level->entities[_entity_index], _entity_index);
+		}
+
+		const bool operator==(const iterator& other)
+		{
+			return ((other._entity_index == _entity_index) && (_level->entities[other._entity_index] == _level->entities[_entity_index])) || _entity_index == _level->entities.size();
+		}
+
+		const bool operator!=(const iterator& other)
+		{
+			return ((other._entity_index != _entity_index) || (_level->entities[other._entity_index] != _level->entities[_entity_index])) && _entity_index != _level->entities.size();
+		}
+
+		bool valid_index()
+		{
+			auto c = _level->empty_entities_spots._Get_container();
+			uint32_t e_index = _entity_index;
+			auto it = std::find_if(c.begin(), c.end(), [e_index](uint32_t index) { return index == e_index; });
+			bool is_end = it == c.end();
+			return is_end && zel_level_has_components(_level, ZEL_CREATE_ID(_level->entities[_entity_index], _entity_index));
+		}
+
+		iterator& operator++()
+		{
+			//PROFILE_FUNCTION();
+
+			do 
+			{
+				_entity_index++;
+			} while (_entity_index < _level->entities.size() && !valid_index());
+			return *this;
+		}
+
+		iterator operator++(int)
+		{
+			++*this;
+			return *this;
+		}
+
+		zel_index _entity_index;
+		zel_level_t* _level = nullptr;
+	};
+
+	bool valid_index(uint32_t entity_index)
+	{
+		auto c = _level->empty_entities_spots._Get_container();
+		auto it = std::find_if(c.begin(), c.end(), [entity_index](uint32_t index) { return index == entity_index; });
+		return it == c.end() && zel_level_has_components<zel_transform_t>(_level, ZEL_CREATE_ID(_level->entities[entity_index] ,entity_index));
+	}
+
+	const iterator begin()
+	{
+		//PROFILE_FUNCTION();
+
+		uint32_t first_entity_index = 1;
+		
+		auto c = _level->empty_entities_spots._Get_container();
+		while (first_entity_index < _level->entities.size() && !valid_index(first_entity_index))
+		{
+			first_entity_index++;
+		} 
+		return iterator(_level, first_entity_index);
+	}
+
+	const iterator end()
+	{
+		return iterator(_level, _level->entities.size());
+	}
+
+	zel_level_t* _level;
+};
+
 zel_level_t* zel_level_create(const char* level_name)
 {
 	zel_level_t* new_level = new zel_level_t;
@@ -123,6 +214,30 @@ T* zel_level_get_component(zel_level_t* level, zel_entity_id entity)
 	ZelComponent<T>* component_type = (ZelComponent<T>*)(level->components[type_name]);
 
 	return component_type->get_component(entity);
+}
+
+template <typename... T>
+bool zel_level_has_components(zel_level_t* level, zel_entity_id entity)
+{
+	//PROFILE_FUNCTION();
+
+	std::string component_names[] = { "", std::string(typeid(T).name())... };
+
+	uint32_t types_size = sizeof...(T);
+	std::vector<ZelComponentBase*> type_bases;
+	for (size_t i = 1; i < types_size + 1; i++)
+	{
+		//zel_print("Printing component template names: %s\n", component_names[i].c_str());
+		type_bases.push_back(level->components[component_names[i]]);
+	}
+
+	for (size_t j = 0; j < types_size; j++)
+	{
+		if (!type_bases[j]->has_component(entity))
+			return false;
+	}
+
+	return true;
 }
 
 template <typename T>
