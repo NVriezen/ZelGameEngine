@@ -1,0 +1,18 @@
+﻿Platforms
+=========
+A distinction can be made between platforms.
+The **target platform** and the **development platform**.
+The former being the platform you'd like to run the game on.
+The latter being the platform you use to develop the game with.
+
+Target Platforms
+----------------
+The Zel Game Engine will support multiple platforms in the future.
+Right now the following platforms can be developed for:
+
+- Windows
+
+Development Platforms
+---------------------
+Right now only Visual Studio on Windows can be used with the engine.
+We currently have no plans to expand beyond this.

@@ -1,0 +1,36 @@
+﻿.. _getting_started_installation:
+
+Installation
+============
+This page describes the absolute minimum to get your project up and running
+
+Download
+--------
+First you need to download the required files.
+There are two ways to receive these files.
+
+The first one is through cloning the **Github** repository.
+The repository can be found here: **link to repository**
+
+.. todo:: add link to repository
+
+Another way is to download the files.
+
+Visual Studio
+-------------
+Right now only Visual Studio's build system is supported.
+There are no plans to support other build systems at this moment.
+
+.. todo:: add visual studio instructions
+
+Configurations
+--------------
+The engine works with two configurations; ``Debug`` and ``Release``.
+Some features will be disabled in the Release configuration, for example logging.
+
+.. todo:: add configuration documentation
+
+What's Next?
+------------
+Now that you have everything setup, it's time to test it out.
+Let's write a Hello World program. //TODO: link to hello world

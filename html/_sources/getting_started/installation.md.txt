@@ -1,0 +1,34 @@
+﻿# Installation
+This page describes the absolute minimum to get your project up and running
+
+## Visual Studio
+
+//TODO: Describe process to setup VS project
+
+## Hello World
+
+To check if everything is working as we expect it to be, we can try to print something.
+
+Change  `zel_initialization` to the code below
+
+ ```c++
+void zel_initialization()
+{
+		printf("Engine Init");
+}
+```
+
+When we now run the program, we should be able to see the text appear in the command prompt.
+If you don't see a command prompt when launching the program, make sure you selected the `Debug` configuration.
+> **Note:** Make sure you set Zel_Windows as the startup project in Visual Studio
+
+Everything should now be working and setup correctly.
+Well done!
+
+
+## What's Next?
+
+Now that you have a working project you can check out the ...
+
+---
+> Written with [StackEdit](https://stackedit.io/)

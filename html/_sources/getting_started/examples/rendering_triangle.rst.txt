@@ -1,0 +1,5 @@
+Rendering a Triangle
+====================
+On this page you'll learn how to render a triangle in the Zel Game Engine.
+
+.. todo:: Fill this page with example
