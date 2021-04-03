@@ -60,12 +60,24 @@ struct zel_entities_list
 
 		const bool operator==(const iterator& other)
 		{
-			return ((other._entity_index == _entity_index) && (_level->entities[other._entity_index] == _level->entities[_entity_index])) || _entity_index == _level->entities.size();
+			bool out_of_range = _entity_index == _level->entities.size();
+			if (out_of_range)
+			{
+				return out_of_range;
+			}
+
+			return (other._entity_index == _entity_index) && (_level->entities[other._entity_index] == _level->entities[_entity_index]);
 		}
 
 		const bool operator!=(const iterator& other)
 		{
-			return ((other._entity_index != _entity_index) || (_level->entities[other._entity_index] != _level->entities[_entity_index])) && _entity_index != _level->entities.size();
+			bool is_not_size = _entity_index != _level->entities.size();
+			if (!is_not_size)
+			{
+				return false;
+			}
+
+			return (other._entity_index != _entity_index) || (_level->entities[other._entity_index] != _level->entities[_entity_index]);
 		}
 
 		bool valid_index()
@@ -74,7 +86,7 @@ struct zel_entities_list
 			uint32_t e_index = _entity_index;
 			auto it = std::find_if(c.begin(), c.end(), [e_index](uint32_t index) { return index == e_index; });
 			bool is_end = it == c.end();
-			return is_end && zel_level_has_components(_level, ZEL_CREATE_ID(_level->entities[_entity_index], _entity_index));
+			return is_end && zel_level_has_components<T...>(_level, ZEL_CREATE_ID(_level->entities[_entity_index], _entity_index));
 		}
 
 		iterator& operator++()
@@ -102,7 +114,7 @@ struct zel_entities_list
 	{
 		auto c = _level->empty_entities_spots._Get_container();
 		auto it = std::find_if(c.begin(), c.end(), [entity_index](uint32_t index) { return index == entity_index; });
-		return it == c.end() && zel_level_has_components<zel_transform_t>(_level, ZEL_CREATE_ID(_level->entities[entity_index] ,entity_index));
+		return it == c.end() && zel_level_has_components<T...>(_level, ZEL_CREATE_ID(_level->entities[entity_index] ,entity_index));
 	}
 
 	const iterator begin()

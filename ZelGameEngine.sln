@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZelGameEngine", "ZelGameEngine\ZelGameEngine.vcxproj", "{35FC1418-B123-4CD5-8E58-82792DAF17CF}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Application\Application.vcxproj", "{137AE927-F429-4579-B202-9DAB64CD16D0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZelGameEngine", "ZelGameEngine\ZelGameEngine.vcxproj", "{35FC1418-B123-4CD5-8E58-82792DAF17CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
