@@ -161,12 +161,15 @@
     <ClInclude Include="include\zel_io.h" />
     <ClInclude Include="include\zel_level.h" />
     <ClInclude Include="include\zel_logging.h" />
+    <ClInclude Include="include\zel_material.h" />
     <ClInclude Include="include\zel_math.h" />
+    <ClInclude Include="include\zel_mesh.h" />
     <ClInclude Include="include\zel_platform_base.h" />
     <ClInclude Include="include\zel_platform_entry.h" />
     <ClInclude Include="include\zel_platform_utils.h" />
     <ClInclude Include="include\zel_profiling.h" />
     <ClInclude Include="include\zel_profiling_timer.h" />
+    <ClInclude Include="include\zel_renderer_general.h" />
     <ClInclude Include="include\zel_rendering_utils.h" />
     <ClInclude Include="include\zel_render_api.h" />
     <ClInclude Include="include\zel_types.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="platforms\windows\include\glad\glad.h" />
     <ClInclude Include="platforms\windows\include\KHR\khrplatform.h" />
     <ClInclude Include="platforms\windows\include\zel_windows_entry.h" />
+    <ClInclude Include="platforms\windows\source\zel_windows_mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\glad.cpp" />

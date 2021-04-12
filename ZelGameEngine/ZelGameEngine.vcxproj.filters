@@ -90,6 +90,18 @@
     <ClInclude Include="include\zel_component_builtin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\zel_renderer_general.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\zel_material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\zel_mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\windows\source\zel_windows_mesh.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp">

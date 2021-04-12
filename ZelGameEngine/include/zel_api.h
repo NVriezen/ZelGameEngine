@@ -5,8 +5,11 @@
 #include <zel_logging.h>
 #include <zel_profiling_timer.h>
 #include <zel_types.h>
+
+// Rendering
 #include <zel_render_api.h>
 #include <zel_rendering_utils.h>
+#include <zel_renderer_general.h>
 
 // ECS
 #include <zel_ecs.h>

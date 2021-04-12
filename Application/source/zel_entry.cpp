@@ -1,7 +1,9 @@
 #include "zel_api.h"
 #include "../include/example_movement.h"
 
-#define ZEL_MAX_ENTITIES 0xFFFE
+//TODO game version going up when hitting build
+
+#define ZEL_MAX_ENTITIES 0xFFFE //TODO fix this!!
 
 zel_entity_id first_entity;
 zel_level_t* active_level;
@@ -16,6 +18,10 @@ void zel_initialization()
 	zel_entity_id entity = zel_level_create_entity(active_level);
 
 	zel_level_register_component<zel_transform_t>(active_level);
+	zel_level_register_component<zel_camera_t>(active_level);
+	zel_level_register_component<zel_material_t>(active_level);
+	zel_level_register_component<zel_mesh_t>(active_level);
+
 	zel_transform_t transform{ {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f} };
 	zel_level_add_component(active_level, entity, transform);
 
@@ -39,6 +45,8 @@ void zel_render()
 	PROFILE_FUNCTION();
 
 	zel_clear_screen(0.03f, 0.07f, 0.21f, 1.0f);
+
+	zel_renderer_general_update(active_level, 0);
 }
 
 // Called when the user wants to close the application
