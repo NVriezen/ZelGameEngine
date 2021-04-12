@@ -10,14 +10,13 @@ zel_level_t* active_level;
 void zel_initialization()
 {
 	zel_print("Hello World\n");
-
 	zel_level_t* example_level = zel_level_create("Example Level");
 	active_level = example_level;
-	
-	zel_level_register_component<zel_transform_t>(active_level);
-	zel_transform_t transform{ { 0.0f,0.0f,0.0f },{ 0.0f,0.0f,0.0f },{ 1.0f,1.0f,1.0f } };
 
 	zel_entity_id entity = zel_level_create_entity(active_level);
+
+	zel_level_register_component<zel_transform_t>(active_level);
+	zel_transform_t transform{ {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f} };
 	zel_level_add_component(active_level, entity, transform);
 
 	zel_level_register_system(active_level, example_movement_update, example_movement_name);
