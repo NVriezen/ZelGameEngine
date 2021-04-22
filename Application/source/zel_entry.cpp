@@ -36,10 +36,10 @@ void zel_initialization()
 	// Camera
 	zel_entity_id camera_entity = zel_level_create_entity(active_level);
 	zel_camera_t camera;
-	camera.transform = { { 0.0f, 0.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f } };
+	camera.transform = { { 0.0f, 0.0f, 200.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f } };
 	camera.up = {0.0f, 1.0f, 0.0f};
 	camera.forward = { 0.0f, 0.0f, -1.0f };
-	camera.projection = glm::ortho(-(float)360 * 0.5f, (float)360 * 0.5f, -(float)240 * 0.5f, (float)240 * 0.5f, 0.1f, 100.0f);
+	camera.projection = glm::ortho(-(float)game_resolution_x * 0.5f, (float)game_resolution_x * 0.5f, -(float)game_resolution_y * 0.5f, (float)game_resolution_y * 0.5f, 0.1f, 1000.0f);
 	camera.framebuffer_id = zel_framebuffer_create(game_resolution_x, game_resolution_y);
 
 	glm::vec3 camera_position = glm::vec3(camera.transform.position.x, camera.transform.position.y, camera.transform.position.z);
@@ -47,7 +47,7 @@ void zel_initialization()
 	glm::vec3 camera_up = glm::vec3(camera.up.x, camera.up.y, camera.up.z);
 	camera.view = glm::lookAt(camera_position, camera_position + camera_forward, camera_up);
 	zel_level_add_component<zel_camera_t>(active_level, camera_entity, camera);
-
+	
 	// Mesh
 	float vertices[] = {
 		// positions				// texture coords
@@ -72,10 +72,10 @@ void zel_initialization()
 	zel_resources_unload(default_shader);
 
 	//Texture
-	zel_texture_t sprite = zel_texture_load("textures/test_image.png");
+	zel_texture_t sprite = zel_texture_load("textures/fullscreen_zel_testimage.png");
 	zel_material_set_texture(&material, "texture0", 0);
-	zel_level_get_component<zel_transform_t>(active_level, entity)->scale.x *= 32;
-	zel_level_get_component<zel_transform_t>(active_level, entity)->scale.y *= 32;
+	zel_level_get_component<zel_transform_t>(active_level, entity)->scale.x *= sprite.width;
+	zel_level_get_component<zel_transform_t>(active_level, entity)->scale.y *= sprite.height;
 
 	zel_level_register_system(active_level, example_system_update, example_system_name);
 }

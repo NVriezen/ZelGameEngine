@@ -12,10 +12,8 @@ void example_system_update(zel_level_t* level, float delta_time)
 	{
 		zel_transform_t* transform = zel_level_get_component<zel_transform_t>(level, entity);
 		
-		transform->rotation.x += speed * delta_time;
+		//transform->rotation.x += speed * delta_time;
 		transform->rotation.y += speed * delta_time;
-		transform->rotation.z += speed * delta_time;
-
-		//zel_print("Camera position(%d): { %0.1f, %0.1f, %0.1f }\n", entity, camera->transform.position.x, camera->transform.position.y, camera->transform.position.z);
+		//transform->rotation.z += speed * delta_time;
 	}
 }
