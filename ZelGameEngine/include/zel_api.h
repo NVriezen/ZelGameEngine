@@ -10,12 +10,16 @@
 #include <zel_render_api.h>
 #include <zel_rendering_utils.h>
 #include <zel_renderer_general.h>
+#include <zel_shader.h>
+#include <zel_material.h>
+#include <zel_texture.h>
 
 // ECS
 #include <zel_ecs.h>
 #include <zel_level.h>
 #include <zel_component_base.h>
 #include <zel_component_class.h>
+#include <zel_resources.h>
 
 // Standard ECS Components
 #include <zel_component_builtin.h>

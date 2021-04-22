@@ -4,8 +4,6 @@
 
 uint32_t zel_vertexbuffer_create(float* vertices_data, uint32_t vertices_size);
 uint32_t zel_indexbuffer_create(uint32_t* indices_data, uint32_t indices_size);
-uint32_t zel_mesh_create(float* vertices_data, uint32_t vertices_size, uint32_t* indices_data, uint32_t indices_size);
-void zel_mesh_bind(zel_mesh_t* mesh)
-{
-
-}
+zel_mesh_t zel_mesh_create(float* vertices_data, uint32_t vertices_size, uint32_t* indices_data, uint32_t indices_size);
+void zel_mesh_destroy(zel_mesh_t* mesh_to_destroy);
+void zel_mesh_bind(zel_mesh_t* mesh);

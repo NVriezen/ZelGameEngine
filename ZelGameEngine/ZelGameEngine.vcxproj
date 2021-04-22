@@ -150,7 +150,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\glad\glad.h" />
+    <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\zel_application.h" />
+    <ClInclude Include="include\zel_entities_list.h" />
+    <ClInclude Include="include\zel_resources.h" />
     <ClInclude Include="include\zel_base.h" />
     <ClInclude Include="include\zel_api.h" />
     <ClInclude Include="include\zel_component_base.h" />
@@ -172,24 +175,34 @@
     <ClInclude Include="include\zel_renderer_general.h" />
     <ClInclude Include="include\zel_rendering_utils.h" />
     <ClInclude Include="include\zel_render_api.h" />
+    <ClInclude Include="include\zel_shader.h" />
+    <ClInclude Include="include\zel_texture.h" />
     <ClInclude Include="include\zel_types.h" />
     <ClInclude Include="include\zel_window.h" />
     <ClInclude Include="platforms\windows\include\glad\glad.h" />
     <ClInclude Include="platforms\windows\include\KHR\khrplatform.h" />
     <ClInclude Include="platforms\windows\include\zel_windows_entry.h" />
-    <ClInclude Include="platforms\windows\source\zel_windows_mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\glad.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_io.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_material.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_mesh.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_render_api.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_shader.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_texture.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_utils.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp" />
     <ClCompile Include="source\zel_component_base.cpp" />
     <ClCompile Include="source\zel_engine_settings.cpp" />
+    <ClCompile Include="source\zel_level.cpp" />
     <ClCompile Include="source\zel_logging.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_profiling.cpp" />
+    <ClCompile Include="source\zel_material.cpp" />
     <ClCompile Include="source\zel_rendering_utils.cpp" />
+    <ClCompile Include="source\zel_resources.cpp" />
+    <ClCompile Include="source\zel_shader.cpp" />
+    <ClCompile Include="source\zel_texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

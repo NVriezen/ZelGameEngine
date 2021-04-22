@@ -1,0 +1,18 @@
+// VERTEX SHADER
+#version 330 core
+layout (location = 0) in vec3 v_position;
+layout (location = 1) in vec2 texture_coords;
+
+out vec2 TexCoord;
+
+//// MUST ALWAYS BE AVAILABLE
+uniform mat4 ZEL_VIEW;
+uniform mat4 ZEL_PROJECTION;
+uniform mat4 ZEL_MODEL;
+////
+
+void main()
+{
+	gl_Position = ZEL_PROJECTION * ZEL_VIEW * ZEL_MODEL * vec4(v_position, 1.0f);
+	TexCoord = texture_coords;
+}

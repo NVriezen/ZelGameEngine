@@ -18,9 +18,12 @@
     <ClCompile Include="source\zel_entry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\application_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\example_movement.h">
+    <ClInclude Include="include\example_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

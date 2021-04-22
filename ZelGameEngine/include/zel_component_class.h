@@ -2,6 +2,7 @@
 #include <zel_base.h>
 #include <zel_ecs.h>
 #include <vector>
+#include <zel_logging.h>
 
 template <typename T>
 class ZelComponent : public ZelComponentBase
@@ -33,15 +34,19 @@ public:
 
 	void destroy(zel_entity_id entity)
 	{
-		zel_generational_ptr component_pointer = entity_to_component[entity];
+		zel_index entity_to_destroy_index = ZEL_GET_INDEX(entity);
+		zel_generational_ptr component_pointer = entity_to_component[entity_to_destroy_index];
 		if (component_pointer.generation != ZEL_GET_GENERATION(entity))
 		{
-			zel_print("[%s] Generation not equal, component already destroyed.", "zel_component_transform");
+			zel_print("[%s] Generation not equal, component already destroyed.\n", "zel_component_...");
 			return;
 		}
 
 		uint32_t component_to_destroy_index = ZEL_GET_INDEX(component_pointer.id);
-		uint32_t entity_to_destroy_index = ZEL_GET_INDEX(entity);
+		//uint32_t entity_to_destroy_index = ZEL_GET_INDEX(entity);
+
+		destroy_function(&components[component_to_destroy_index]);
+
 		if (component_to_destroy_index == last_component)
 		{
 			component_to_entity[component_to_destroy_index].id = 0;
@@ -67,7 +72,7 @@ public:
 		zel_generational_ptr component_pointer = entity_to_component[entity_index];
 		if (component_pointer.generation != entity_generation)
 		{
-			zel_print("zel_component class, get component return nullptr;");
+			zel_print("[zel_component class] get component return nullptr | Entity: %d | Type: %s\n", entity, typeid(T).name());
 			return nullptr;
 		}
 
@@ -75,10 +80,28 @@ public:
 		return &components[component_index];
 	}
 
+	void free()
+	{
+		if (destroy_function == NULL)
+		{
+			components.clear();
+			return;
+		}
+
+		uint32_t components_size = components.size();
+		for (size_t i = 1; i < components_size; ++i)
+		{
+			destroy_function(&components[i]);
+		}
+		components.clear();
+	}
+
 	std::vector<T>* get_all()
 	{
 		return &components;
 	}
+
+	void(*destroy_function)(T*);
 
 private:
 	std::vector<T> components = { {} };

@@ -1,6 +1,7 @@
 #pragma once
 #include <zel_base.h>
 #include <zel_types.h>
+#include <unordered_map>
 
 #include <glm/glm/glm.hpp>
 
@@ -20,7 +21,7 @@ struct zel_mesh_t
 
 struct zel_material_t 
 {
-	uint16_t shader;
+	uint32_t shader_resource;
 
 	////general uniforms on every shader
 	//uint32_t view;
@@ -30,6 +31,14 @@ struct zel_material_t
 	std::unordered_map<std::string, uint32_t> custom_uniforms; //make this a map of user defined uniforms
 };
 
+struct zel_texture_t
+{
+	uint16_t render_id;
+	uint16_t render_unit;
+	uint16_t width;
+	uint16_t height;
+};
+
 struct zel_camera_t 
 {
 	zel_transform_t transform;
@@ -37,5 +46,5 @@ struct zel_camera_t
 	vector3 up;
 	glm::mat4 view;
 	glm::mat4 projection;
-	//uint32_t framebuffer_id;
+	uint32_t framebuffer_id;
 };

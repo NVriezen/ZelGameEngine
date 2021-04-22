@@ -44,6 +44,11 @@ void zel_renderer_general_update(zel_level_t* level, float delta_time)
 	for (zel_entity_id camera_entity : zel_entities_list<zel_camera_t>(level))
 	{
 		zel_camera_t* camera = zel_level_get_component<zel_camera_t>(level, camera_entity);
+		zel_framebuffer_bind(camera->framebuffer_id);
+		zel_set_viewport(0, 0, game_resolution_x, game_resolution_y);
+		zel_clear_screen(0.03f, 0.07f, 0.21f, 1.0f);
+		zel_clear_depth();
+
 		for (zel_entity_id entity : zel_entities_list<zel_transform_t, zel_material_t, zel_mesh_t>(level))
 		{
 			zel_material_t* material_of_entity = zel_level_get_component<zel_material_t>(level, entity);

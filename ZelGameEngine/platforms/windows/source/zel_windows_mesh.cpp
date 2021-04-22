@@ -32,18 +32,30 @@ uint32_t zel_indexbuffer_create(uint32_t* indices_data, uint32_t indices_size)
 	return EBO;
 }
 
-uint32_t zel_mesh_create(float* vertices_data, uint32_t vertices_size, uint32_t* indices_data, uint32_t indices_size)
+zel_mesh_t zel_mesh_create(float* vertices_data, uint32_t vertices_size, uint32_t* indices_data, uint32_t indices_size)
 {
+	zel_mesh_t mesh;
 	uint32_t VAO;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
-	zel_vertexbuffer_create(vertices_data, vertices_size);
-	zel_indexbuffer_create(indices_data, indices_size);
+	uint32_t VBO = zel_vertexbuffer_create(vertices_data, vertices_size);
+	uint32_t EBO = zel_indexbuffer_create(indices_data, indices_size);
 
 	glBindVertexArray(0);
 
-	return VAO;
+	mesh.VAO = VAO;
+	mesh.VBO = VBO;
+	mesh.EBO = EBO;
+
+	return mesh;
+}
+
+void zel_mesh_destroy(zel_mesh_t* mesh_to_destroy)
+{
+	glDeleteBuffers(1, (const GLuint*)&mesh_to_destroy->VAO);
+	glDeleteBuffers(1, (const GLuint*)&mesh_to_destroy->VBO);
+	glDeleteBuffers(1, (const GLuint*)&mesh_to_destroy->EBO);
 }
 
 void zel_mesh_bind(zel_mesh_t* mesh)

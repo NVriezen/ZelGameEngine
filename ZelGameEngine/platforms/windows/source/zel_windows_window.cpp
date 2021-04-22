@@ -5,6 +5,7 @@
 #include <zel_base.h>
 #include <zel_logging.h>
 #include <zel_rendering_utils.h>
+#include <zel_engine_settings.h>
 
 // GLFW Callbacks
 void error_callback(int error, const char* description);
@@ -16,22 +17,19 @@ uint8_t zel_window_create(zel_window_t* window)
 {
 	if (!glfwInit())
 	{
-		// initialization failed!
 		zel_print("Failed to initialize GLFW\n");
 		return 1;
 	}
 
-	zel_print("Zel Game Engine V0.0.10 by NVriezen 2021\n");
+	zel_print("Zel Game Engine V0.0.22 by NVriezen 2021\n");
 	glfwSetErrorCallback(error_callback);
 
 	// create window with minimal OpenGL 2.0
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-	GLFWwindow* glfw_window = glfwCreateWindow(480, 270, "Zel Template Game", NULL, NULL);
+	GLFWwindow* glfw_window = glfwCreateWindow(draw_resolution_x, draw_resolution_y, application_name, NULL, NULL);
 	if (!glfw_window)
 	{
-		// window or openGL context creation failed
-		// update drivers or check hardware
 		zel_print("Failed to open window.\n Please check your drivers or hardware.\n");
 		glfwTerminate();
 		return 2;
@@ -50,6 +48,9 @@ uint8_t zel_window_create(zel_window_t* window)
 	glfwSetFramebufferSizeCallback(glfw_window, framebuffer_size_callback);
 
 	glfwSwapInterval(0);
+
+	screen_resolution_x = draw_resolution_x;
+	screen_resolution_y = draw_resolution_y;
 
 	(*window) = (zel_window_t)glfw_window;
 
@@ -87,7 +88,9 @@ void window_close_callback(GLFWwindow* window_closing)
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	zel_scale_fit_screen(width, height, 480, 270);
+	zel_scale_fit_screen(width, height, game_resolution_x, game_resolution_y);
+	screen_resolution_x = width;
+	screen_resolution_y = height;
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)

@@ -17,7 +17,7 @@ void zel_io_initialization()
 	chr_pointer[1] = '\0';
 }
 
-char* zel_get_absolute_path(const char* relative_path)
+char* zel_io_get_absolute_path(const char* relative_path)
 {
 	char* file_path = new char[MAX_PATH];
 	strcpy_s(file_path, MAX_PATH, local_path);
@@ -25,7 +25,7 @@ char* zel_get_absolute_path(const char* relative_path)
 	return file_path;
 }
 
-char* zel_load_file_in_memory(const char* path_to_file, uint64_t* buffer_length)
+char* zel_io_load_file_in_memory(const char* path_to_file, uint64_t* buffer_length)
 {
 	FILE* file_to_open;
 	uint64_t file_length;
@@ -35,9 +35,10 @@ char* zel_load_file_in_memory(const char* path_to_file, uint64_t* buffer_length)
 	strcat_s(file_path, path_to_file);
 
 	errno_t result = fopen_s(&file_to_open, file_path, "rb");
-	if (!result)
+	if (result != 0)
 	{
-		zel_print("Could not open file. %s", file_path);
+		char str_buf[512];
+		zel_print("%s | ERROR: %d | %s\n", file_path, errno, strerror_s(str_buf, errno));
 		fclose(file_to_open);
 		return nullptr;
 	}

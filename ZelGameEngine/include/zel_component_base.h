@@ -6,6 +6,7 @@ class ZelComponentBase
 {
 public:
 	virtual void destroy(zel_entity_id entity) = 0;
+	virtual void free() = 0;
 
 	zel_entity_id get_entity(zel_component_id component);
 	bool has_component(zel_entity_id entity);
