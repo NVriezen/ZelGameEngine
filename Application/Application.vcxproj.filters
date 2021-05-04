@@ -26,8 +26,5 @@
     <ClInclude Include="include\example_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\input_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
