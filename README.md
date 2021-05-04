@@ -1,8 +1,8 @@
 # ZelGameEngine
 Welcome to the official Zel Game Engine Repository!
-A 2D Pixel Art Game Engine designed to help you understand Data Oriented Design.
+A 2D Pixel Art Game Engine designed to help you understand Data Oriented Design (DOD).
 The engine focusses on modern hardware and keeping code simple.
-Showing intermediate programmers that there is more than Object Oriented Programming.
+Showing intermediate programmers that there is more than Object Oriented Programming (OOP).
 
 ## Features
 The following features are currently implemented:
