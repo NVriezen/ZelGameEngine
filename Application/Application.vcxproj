@@ -151,6 +151,7 @@ set/A errlev="%ERRORLEVEL% &amp; 24"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\example_system.h" />
+    <ClInclude Include="include\input_map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

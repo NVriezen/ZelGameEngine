@@ -114,6 +114,15 @@
     <ClInclude Include="include\zel_entities_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\zel_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\windows\include\zel_windows_input_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\windows\include\zel_windows_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp">
@@ -171,6 +180,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\zel_resources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\windows\source\zel_windows_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

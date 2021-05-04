@@ -4,6 +4,8 @@
 #include <zel_platform_utils.h>
 #include <zel_engine_settings.h>
 
+#include "zel_windows_input.h"
+
 int main()
 {
 	ZEL_PROFILING_BEGIN_SESSION("Window_Creation", "window_creation_profile.json");
@@ -12,6 +14,7 @@ int main()
 	if (error_code) return 1;
 	ZEL_PROFILING_END_SESSION();
 
+	zel_windows_input_init(&window);
 	zel_initialization();
 
 	double total_time = zel_get_time(); // in micro seconds or nano seconds
@@ -26,11 +29,13 @@ int main()
 		total_time = zel_get_time();
 		delta_time = (float)(total_time - previous_timestamp);
 
-		//input checking
 
 		// run game code
 		zel_logic(delta_time);
 		zel_render();
+
+		//input checking
+		zel_input_update();
 
 		zel_window_update(window);
 	}

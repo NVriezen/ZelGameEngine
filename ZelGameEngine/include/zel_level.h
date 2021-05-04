@@ -28,15 +28,6 @@ struct zel_level_t
 	std::queue<uint32_t> empty_entities_spots;
 };
 
-struct zel_component_t
-{
-	std::vector<void*> components = { {} };
-	zel_generational_ptr component_to_entity[ZEL_MAX_ENTITIES]; // replace with std::vector and make it as big as the actual data vector
-	zel_generational_ptr entity_to_component[ZEL_MAX_ENTITIES]; // replace with std::vector and make it as big as the biggest entity_id requesting a component
-	uint32_t last_component = 0;
-	uint32_t component_size;
-};
-
 zel_level_t* zel_level_create(const char* level_name);
 void zel_level_destroy(zel_level_t* level);
 zel_entity_id zel_level_create_entity(zel_level_t* level);

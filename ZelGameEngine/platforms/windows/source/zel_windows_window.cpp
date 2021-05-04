@@ -6,6 +6,7 @@
 #include <zel_logging.h>
 #include <zel_rendering_utils.h>
 #include <zel_engine_settings.h>
+#include <zel_windows_input.h>
 
 // GLFW Callbacks
 void error_callback(int error, const char* description);
@@ -21,7 +22,7 @@ uint8_t zel_window_create(zel_window_t* window)
 		return 1;
 	}
 
-	zel_print("Zel Game Engine V0.0.22 by NVriezen 2021\n");
+	zel_print("Zel Game Engine V%d.%d.%d by NVriezen 2021\n", zel_major_version, zel_minor_version, zel_build_number);
 	glfwSetErrorCallback(error_callback);
 
 	// create window with minimal OpenGL 2.0
@@ -99,5 +100,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
-	//zel_button_callback(key, scancode, action, mods);
+
+	if (action == GLFW_REPEAT)
+		return;
+
+	zel_input_windows_key_callback(key, scancode, action, mods);
 }

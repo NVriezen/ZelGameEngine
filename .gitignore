@@ -8,6 +8,7 @@
 [Tt]emp
 [Bb]in
 [Aa]pplication/runtime_profile*
+[Aa]pplication/VTune Profiler Results
 
 # User-specific files
 *.rsuser

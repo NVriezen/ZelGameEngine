@@ -153,6 +153,7 @@
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\zel_application.h" />
     <ClInclude Include="include\zel_entities_list.h" />
+    <ClInclude Include="include\zel_input.h" />
     <ClInclude Include="include\zel_resources.h" />
     <ClInclude Include="include\zel_base.h" />
     <ClInclude Include="include\zel_api.h" />
@@ -182,9 +183,12 @@
     <ClInclude Include="platforms\windows\include\glad\glad.h" />
     <ClInclude Include="platforms\windows\include\KHR\khrplatform.h" />
     <ClInclude Include="platforms\windows\include\zel_windows_entry.h" />
+    <ClInclude Include="platforms\windows\include\zel_windows_input.h" />
+    <ClInclude Include="platforms\windows\include\zel_windows_input_constants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\glad.cpp" />
+    <ClCompile Include="platforms\windows\source\zel_windows_input.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_io.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_material.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_mesh.cpp" />

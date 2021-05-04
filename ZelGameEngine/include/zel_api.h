@@ -6,6 +6,9 @@
 #include <zel_profiling_timer.h>
 #include <zel_types.h>
 
+// Input
+#include <zel_input.h>
+
 // Rendering
 #include <zel_render_api.h>
 #include <zel_rendering_utils.h>

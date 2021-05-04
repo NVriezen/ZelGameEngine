@@ -5,6 +5,9 @@
 
 extern uint8_t zel_engine_running;
 
+extern uint32_t zel_build_number;
+extern uint8_t zel_major_version;
+extern uint8_t zel_minor_version;
 extern const char* application_name;
 extern const uint16_t game_resolution_x;
 extern const uint16_t game_resolution_y;
