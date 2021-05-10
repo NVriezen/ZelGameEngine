@@ -18,6 +18,8 @@ void zel_initialization()
 
 	// Level Initialization - TODO: put this somewhere else (Level manager?)
 	zel_print("Hello World\n");
+
+	active_level = zel_level_create("example_level");
 }
 
 // Called every frame. Put your logic here.
