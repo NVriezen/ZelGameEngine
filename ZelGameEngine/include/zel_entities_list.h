@@ -49,7 +49,7 @@ struct zel_entities_list
 
 		bool valid_index()
 		{
-			auto c = _level->empty_entities_spots._Get_container();
+			std::deque<uint32_t> c = _level->empty_entities_spots.get_container();
 			uint32_t e_index = _entity_index;
 			auto it = std::find_if(c.begin(), c.end(), [e_index](uint32_t index) { return index == e_index; });
 			bool is_end = it == c.end();
@@ -79,7 +79,7 @@ struct zel_entities_list
 
 	bool valid_index(uint32_t entity_index)
 	{
-		auto c = _level->empty_entities_spots._Get_container();
+		std::deque<uint32_t> c = _level->empty_entities_spots.get_container();
 		auto it = std::find_if(c.begin(), c.end(), [entity_index](uint32_t index) { return index == entity_index; });
 		return it == c.end() && zel_level_has_components<T...>(_level, ZEL_CREATE_ID(_level->entities[entity_index], entity_index));
 	}
@@ -90,7 +90,7 @@ struct zel_entities_list
 
 		uint32_t first_entity_index = 1;
 
-		auto c = _level->empty_entities_spots._Get_container();
+		std::deque<uint32_t> c = _level->empty_entities_spots.get_container();
 		while (first_entity_index < _level->entities.size() && !valid_index(first_entity_index))
 		{
 			first_entity_index++;
