@@ -12,6 +12,13 @@
 typedef struct zel_level_t _zel_level_t;
 typedef void(*zel_system_t)(_zel_level_t* level, float delta_time);
 
+template <class _Container>
+class QueueContainerWrapper : public _Container {
+public:
+	typedef typename _Container::container_type container_type;
+	container_type &get_container() { return this->c; }
+};
+
 struct zel_level_t
 {
 	const char* level_name;
@@ -25,7 +32,7 @@ struct zel_level_t
 
 	//entities
 	std::vector<uint8_t> entities = { 0 };
-	std::queue<uint32_t> empty_entities_spots;
+	QueueContainerWrapper<std::queue<uint32_t>> empty_entities_spots;
 };
 
 zel_level_t* zel_level_create(const char* level_name);
