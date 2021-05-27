@@ -66,6 +66,11 @@ void* zel_resources_get_from_id(zel_resource_id resource_id)
 void zel_resources_unload(zel_resource_id resource_id)
 {
 	zel_resource_t* resource = zel_level_get_component<zel_resource_t>(resource_level, resource_id);
+	
+	//Fix this line, this is just temporary fix
+	if (resource == nullptr)
+		return;
+
 	if (resource->counter != 1)
 	{
 		--resource->counter;
