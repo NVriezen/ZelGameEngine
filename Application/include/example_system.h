@@ -4,9 +4,7 @@
 
 const char* example_system_name = "example_system";
 
-struct player_t {
-
-};
+struct player_t { };
 
 void example_system_update(zel_level_t* level, float delta_time)
 {
@@ -27,5 +25,12 @@ void example_system_update(zel_level_t* level, float delta_time)
 		}
 
 		zel_print("Player is position: { %f, %f, %f }\n", player_transform->position.x, player_transform->position.y, player_transform->position.z);
+
+
+		int state = zel_input_get_key_press(ZEL_KEY_A);
+		if (state)
+		{
+			zel_print("Key A is pressed");
+		}
 	}
 }
