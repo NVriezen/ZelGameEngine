@@ -123,6 +123,12 @@
     <ClInclude Include="platforms\windows\include\zel_windows_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="platforms\windows\thirdparty\include\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\windows\thirdparty\include\KHR\khrplatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp">
@@ -132,9 +138,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\zel_logging.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="platforms\windows\source\glad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\zel_engine_settings.cpp">
@@ -183,6 +186,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platforms\windows\source\zel_windows_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\windows\thirdparty\source\glad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
