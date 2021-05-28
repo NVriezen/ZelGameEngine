@@ -69,22 +69,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN64\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)_$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)temp\$(Configuration)\$(ProjectName)_$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN64\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN64\lib-vc2015;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(ProjectName)_$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)temp\$(Configuration)\$(ProjectName)_$(Platform)\</IntDir>
   </PropertyGroup>
@@ -187,7 +187,6 @@
     <ClInclude Include="platforms\windows\include\zel_windows_input_constants.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="platforms\windows\source\glad.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_input.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_io.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_material.cpp" />
@@ -197,6 +196,7 @@
     <ClCompile Include="platforms\windows\source\zel_windows_texture.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_utils.cpp" />
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp" />
+    <ClCompile Include="platforms\windows\thirdparty\source\glad.cpp" />
     <ClCompile Include="source\zel_component_base.cpp" />
     <ClCompile Include="source\zel_engine_settings.cpp" />
     <ClCompile Include="source\zel_level.cpp" />
