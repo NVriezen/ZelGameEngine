@@ -49,10 +49,15 @@ void zel_renderer_general_update(zel_level_t* level, float delta_time)
 		zel_clear_screen(0.03f, 0.07f, 0.21f, 1.0f);
 		zel_clear_depth();
 
+		uint8_t texture_u = 1;
 		for (zel_entity_id entity : zel_entities_list<zel_transform_t, zel_material_t, zel_mesh_t>(level))
 		{
 			zel_material_t* material_of_entity = zel_level_get_component<zel_material_t>(level, entity);
 			zel_material_set_camera_uniforms(material_of_entity, camera->view, camera->projection);
+
+			//This is a hack to get the rendering working for the playtest
+			zel_material_set_texture(material_of_entity, "texture0", texture_u/2);
+			texture_u++;
 
 			zel_transform_t* transform_of_entity = zel_level_get_component<zel_transform_t>(level, entity);
 			glm::vec3 position = glm::vec3(

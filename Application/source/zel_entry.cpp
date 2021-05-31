@@ -33,6 +33,7 @@ void zel_initialization()
 	zel_entity_id enemy2_entity			= zel_level_create_entity(active_level);
 	zel_entity_id enemy1_shadow_entity	= zel_level_create_entity(active_level);
 	zel_entity_id enemy2_shadow_entity	= zel_level_create_entity(active_level);
+	zel_entity_id player_entity			= zel_level_create_entity(active_level);
 
 	// Transform
 	zel_transform_t background_transform{ { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f },{ 1.0f, 1.0f, 1.0f } };
@@ -47,6 +48,9 @@ void zel_initialization()
 	zel_transform_t enemy2_shadow_transform{ { 64.0f, -32.0f, 0.0f },{ 0.0f, 0.0f, 0.0f },{ 1.0f, 1.0f, 1.0f } };
 	zel_level_add_component(active_level, enemy1_shadow_entity, enemy1_shadow_transform);
 	zel_level_add_component(active_level, enemy2_shadow_entity, enemy2_shadow_transform);
+
+	zel_transform_t player_transform{ { 0.0f, 0.0f, 0.0f },{ 0.0f, 0.0f, 0.0f },{ 1.0f, 1.0f, 1.0f } };
+	zel_level_add_component(active_level, player_entity, player_transform);
 
 	// Camera
 	zel_entity_id camera_entity = zel_level_create_entity(active_level);
@@ -83,6 +87,7 @@ void zel_initialization()
 	zel_level_add_component<zel_mesh_t>(active_level, enemy2_entity,		mesh);
 	zel_level_add_component<zel_mesh_t>(active_level, enemy1_shadow_entity, mesh);
 	zel_level_add_component<zel_mesh_t>(active_level, enemy2_shadow_entity, mesh);
+	zel_level_add_component<zel_mesh_t>(active_level, player_entity, mesh);
 
 	//Material
 	//We need all these shaders because otherwise the textures won't be used properly.
@@ -95,20 +100,20 @@ void zel_initialization()
 	zel_resource_id default1_shader = zel_shader_load("shaders/default.vertex", "shaders/default.fragment");
 	zel_resource_id default2_shader = zel_shader_load("shaders/default.vertex", "shaders/default.fragment");
 	zel_resource_id default3_shader = zel_shader_load("shaders/default.vertex", "shaders/default.fragment");
-	zel_resource_id default4_shader = zel_shader_load("shaders/default.vertex", "shaders/default.fragment");
 	zel_material_t background_material = zel_material_create(default_shader);
-	zel_material_t enemy_material = zel_material_create(default4_shader);
+	zel_material_t enemy_material = zel_material_create(default1_shader);
 	zel_material_t enemy_shadow_material = zel_material_create(default2_shader);
+	zel_material_t player_material = zel_material_create(default3_shader);
 	zel_level_add_component<zel_material_t>(active_level, background_entity,	background_material);
 	zel_level_add_component<zel_material_t>(active_level, enemy1_entity,		enemy_material);
 	zel_level_add_component<zel_material_t>(active_level, enemy2_entity,		enemy_material);
 	zel_level_add_component<zel_material_t>(active_level, enemy1_shadow_entity, enemy_shadow_material);
 	zel_level_add_component<zel_material_t>(active_level, enemy2_shadow_entity, enemy_shadow_material);
+	zel_level_add_component<zel_material_t>(active_level, player_entity,		player_material);
 	zel_resources_unload(default_shader);
 	zel_resources_unload(default1_shader);
 	zel_resources_unload(default2_shader);
 	zel_resources_unload(default3_shader);
-	zel_resources_unload(default4_shader);
 
 	//Texture
 	zel_texture_t background = zel_texture_load("textures/background.png");
@@ -129,6 +134,11 @@ void zel_initialization()
 	zel_level_get_component<zel_transform_t>(active_level, enemy1_shadow_entity)->scale.y *= enemy_shadow_sprite.height;
 	zel_level_get_component<zel_transform_t>(active_level, enemy2_shadow_entity)->scale.x *= enemy_shadow_sprite.width;
 	zel_level_get_component<zel_transform_t>(active_level, enemy2_shadow_entity)->scale.y *= enemy_shadow_sprite.height;
+
+	zel_texture_t player_sprite = zel_texture_load("textures/player_sprite.png");
+	zel_material_set_texture(&player_material, "texture0", 3);
+	zel_level_get_component<zel_transform_t>(active_level, player_entity)->scale.x *= player_sprite.width;
+	zel_level_get_component<zel_transform_t>(active_level, player_entity)->scale.y *= player_sprite.height;
 }
 
 // Called every frame. Put your logic here.
