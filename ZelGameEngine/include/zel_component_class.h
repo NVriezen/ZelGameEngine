@@ -96,10 +96,10 @@ public:
 		components.clear();
 	}
 
-	std::vector<T>* get_all()
-	{
-		return &components;
-	}
+	//std::vector<T>* get_all()
+	//{
+	//	return &components;
+	//}
 
 	void(*destroy_function)(T*);
 
