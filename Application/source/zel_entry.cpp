@@ -141,7 +141,7 @@ void zel_initialization()
 	zel_level_get_component<zel_transform_t>(active_level, player_entity)->scale.y *= player_sprite.height;
 }
 
-// Called every frame. Put your logic here.
+// Called every frame to process systems.
 void zel_logic(float delta_time)
 {
 	PROFILE_FUNCTION();
@@ -152,7 +152,7 @@ void zel_logic(float delta_time)
 	}
 }
 
-// Called every frame. Put your render code here.
+// Called every frame to render the frame.
 void zel_render()
 {
 	PROFILE_FUNCTION();
