@@ -22,10 +22,7 @@ bool zel_input_get_key_press(zel_key button)
 {
 	uint8_t index1 = button >> 5; //same as (button / 32)
 	uint8_t index = button % 32;
-	uint8_t current = (current_input[index1] & (1 << index));
-	uint8_t previous = ~(previous_input[index1] & (1 << index));
-	uint8_t result = current & previous;
-	return result;
+	return (current_input[index1] & (1 << index)) & ~(previous_input[index1] & (1 << index));
 }
 
 bool zel_input_get_key_release(zel_key button)
@@ -40,7 +37,6 @@ bool zel_input_get_key_hold(zel_key button)
 	uint8_t index1 = button >> 5; //same as (button / 32)
 	uint8_t index = button % 32;
 	return (current_input[index1] & (1 << index)) & (previous_input[index1] & (1 << index));
-	return glfwGetKey(main_window, button) == GLFW_REPEAT;
 }
 
 void zel_input_update()

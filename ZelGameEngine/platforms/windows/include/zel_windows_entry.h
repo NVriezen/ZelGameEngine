@@ -21,14 +21,13 @@ int main()
 	double previous_timestamp = total_time;
 	float delta_time = 0;
 	ZEL_PROFILING_BEGIN_SESSION("Runtime", "runtime_profile.json");
-	while (!zel_engine_running)
+	while (!zel_shutdown_engine)
 	{
 		PROFILE_SCOPE("Main Loop");
 
 		previous_timestamp = total_time;
 		total_time = zel_get_time();
 		delta_time = (float)(total_time - previous_timestamp);
-
 
 		// run game code
 		zel_logic(delta_time);
