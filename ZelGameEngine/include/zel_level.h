@@ -19,6 +19,9 @@ public:
 	container_type &get_container() { return this->c; }
 };
 
+/**
+*	The struct which holds all the entities, components and systems data.
+*/
 struct zel_level_t
 {
 	const char* level_name;
@@ -42,26 +45,49 @@ void zel_level_destroy_entity(zel_level_t* level, zel_entity_id entity);
 void zel_level_register_system(zel_level_t* level, zel_system_t system_update, const char* system_name);
 void zel_level_unregister_system(zel_level_t* level, const char* system_name);
 
+/**
+*	Call this function before using a component type in your program to register it.
+*	Only call this function once for every level.
+*/
 template <typename T>
 void zel_level_register_component(zel_level_t* level)
 {
+	std::string type_name = typeid(T).name();
+	if (level->components.find(type_name) != level->components.end())
+	{
+		//The component type is already registered
+		return;
+	}
+
 	ZelComponent<T>* new_component_type = new ZelComponent<T>();
 	ZelComponentBase* base_component_type = new_component_type;
-	std::string type_name = typeid(T).name();
 	level->components.insert({ type_name, base_component_type });
 }
 
+/**
+*	Call this function before using a component type in your program to register it.
+*	Only call this function once for every level.
+*	(Same as zel_level_register_component, but with the option to supply a destroy function)
+*/
 template <typename T>
 void zel_level_register_component_with_destroy(zel_level_t* level, void (*destroy_function)(T*))
 {
+	std::string type_name = typeid(T).name();
+	if (level->components.find(type_name) != level->components.end())
+	{
+		//The component type is already registered
+		return;
+	}
+
 	ZelComponent<T>* new_component_type = new ZelComponent<T>();
 	new_component_type->destroy_function = destroy_function;
 	ZelComponentBase* base_component_type = new_component_type;
-	std::string type_name = typeid(T).name();
 	level->components.insert({ type_name, base_component_type });
 }
 
-
+/**
+*	Copies and adds a component to the specified entity in the specified level
+*/
 template <typename T>
 void zel_level_add_component(zel_level_t* level, zel_entity_id entity, T component)
 {
@@ -71,6 +97,11 @@ void zel_level_add_component(zel_level_t* level, zel_entity_id entity, T compone
 	component_type->create(entity, component);
 }
 
+/**
+*	Returns a pointer to the requested component for the specified entity in the specified level.
+*	If the component does not exist, it returns a null pointer.
+*	The pointer must not be freed, that's done when the component is destroyed.
+*/
 template <typename T>
 T* zel_level_get_component(zel_level_t* level, zel_entity_id entity)
 {

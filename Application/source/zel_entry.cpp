@@ -19,10 +19,11 @@ void zel_initialization()
 	// Level Initialization - TODO: put this somewhere else (Level manager?)
 	zel_print("Hello World\n");
 
-	active_level = zel_level_create("example_level");
+	zel_level_t* example_level = zel_level_create("example_level");
+	active_level = example_level;
 }
 
-// Called every frame. Put your logic here.
+// Called every frame to process systems.
 void zel_logic(float delta_time)
 {
 	PROFILE_FUNCTION();
@@ -33,7 +34,7 @@ void zel_logic(float delta_time)
 	}
 }
 
-// Called every frame. Put your render code here.
+// Called every frame to render the frame.
 void zel_render()
 {
 	PROFILE_FUNCTION();

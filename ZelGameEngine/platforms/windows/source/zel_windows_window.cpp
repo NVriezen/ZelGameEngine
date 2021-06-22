@@ -78,13 +78,13 @@ void zel_window_terminate()
 void error_callback(int error, const char* description)
 {
 	zel_print("Error: %s\n", description);
-	zel_engine_running = 1;
+	zel_shutdown_engine = 1;
 }
 
 void window_close_callback(GLFWwindow* window_closing)
 {
 	zel_print("User wants to close the window.\n");
-	zel_engine_running = 1;
+	zel_shutdown_engine = 1;
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)

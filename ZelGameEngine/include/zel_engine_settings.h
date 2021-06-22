@@ -3,7 +3,7 @@
 
 #define PROFILING 1
 
-extern uint8_t zel_engine_running;
+extern uint8_t zel_shutdown_engine;
 
 extern uint8_t zel_major_version;
 extern uint8_t zel_minor_version;
