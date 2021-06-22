@@ -70,11 +70,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\GLFW\glfw-3.3.2.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN32\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\glfw-3.3.4.bin.WIN64\include;$(SolutionDir)ZelGameEngine\platforms\windows\thirdparty\include\;$(SolutionDir)ZelGameEngine\platforms\windows\include\;$(SolutionDir)ZelGameEngine\include;$(IncludePath)</IncludePath>
