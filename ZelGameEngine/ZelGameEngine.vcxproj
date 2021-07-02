@@ -152,7 +152,8 @@
     <ClInclude Include="include\glad\glad.h" />
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\zel_application.h" />
-    <ClInclude Include="include\zel_entities_list.h" />
+    <ClInclude Include="include\zel_component_collection.h" />
+    <ClInclude Include="include\zel_entity_collection.h" />
     <ClInclude Include="include\zel_input.h" />
     <ClInclude Include="include\zel_resources.h" />
     <ClInclude Include="include\zel_base.h" />

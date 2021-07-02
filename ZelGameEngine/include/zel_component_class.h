@@ -97,7 +97,5 @@ public:
 	}
 
 	void(*destroy_function)(T*);
-
-private:
 	std::vector<T> components = { {} };
 };

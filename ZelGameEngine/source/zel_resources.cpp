@@ -1,5 +1,6 @@
 #include <zel_resources.h>
 #include <zel_level.h>
+#include <zel_component_collection.h>
 
 #include <zel_shader.h>
 #include <zel_render_api.h>
@@ -21,12 +22,13 @@ void zel_resources_init()
 //Hide this one from api?
 zel_resource_id zel_resources_add(const char* path, void* pointer_to_resource, resource_destructor destructor_function)
 {
-	for (zel_entity_id entity : zel_entities_list<zel_resource_t>(resource_level))
+	zel_component_collection<zel_resource_t> resources = zel_component_collection_create<zel_resource_t>(resource_level);
+	for (size_t component_index = 1; component_index < resources.length; component_index++)
 	{
-		zel_resource_t* resource = zel_level_get_component<zel_resource_t>(resource_level, entity);
+		zel_resource_t* resource = &(*resources.first)[component_index];
 		if (resource->path == path)
 		{
-			return entity;
+			return resources.entities[component_index];
 		}
 	}
 
@@ -44,13 +46,14 @@ zel_resource_id zel_resources_add(const char* path, void* pointer_to_resource, r
 
 zel_resource_id zel_resources_get_loaded(const char* path)
 {
-	for (zel_entity_id entity : zel_entities_list<zel_resource_t>(resource_level))
+	zel_component_collection<zel_resource_t> resources = zel_component_collection_create<zel_resource_t>(resource_level);
+	for (size_t component_index = 1; component_index < resources.length; component_index++)
 	{
-		zel_resource_t* resource = zel_level_get_component<zel_resource_t>(resource_level, entity);
+		zel_resource_t* resource = &(*resources.first)[component_index];
 		if (resource->path == path)
 		{
 			resource->counter += 1;
-			return entity;
+			return resources.entities[component_index];
 		}
 	}
 

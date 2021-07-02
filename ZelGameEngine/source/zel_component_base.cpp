@@ -22,3 +22,8 @@ bool ZelComponentBase::has_component(zel_entity_id entity)
 	
 	return component_pointer.generation == entity_generation;
 }
+
+uint32_t ZelComponentBase::total_components()
+{
+	return last_component;
+}

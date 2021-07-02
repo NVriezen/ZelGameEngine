@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <queue>
 #include <typeinfo>
-#include <zel_entities_list.h>
 
 typedef struct zel_level_t _zel_level_t;
 typedef void(*zel_system_t)(_zel_level_t* level, float delta_time);

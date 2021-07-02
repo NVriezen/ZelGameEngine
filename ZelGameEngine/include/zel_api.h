@@ -23,6 +23,8 @@
 #include <zel_component_base.h>
 #include <zel_component_class.h>
 #include <zel_resources.h>
+#include <zel_entity_collection.h>
+#include <zel_component_collection.h>
 
 // Standard ECS Components
 #include <zel_component_builtin.h>

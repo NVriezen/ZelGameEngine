@@ -6,9 +6,11 @@ const char* example_system_name = "example_system";
 
 void example_system_update(zel_level_t* level, float delta_time)
 {
-	for (zel_entity_id entity : zel_entities_list<zel_transform_t>(level))
+	zel_component_collection<zel_transform_t> transform_collection = zel_component_collection_create<zel_transform_t>(level);
+	for (size_t component_index = 1; component_index < transform_collection.length; component_index++)
 	{
-		zel_level_get_component<zel_transform_t>(level, entity)->position.x += 1;
-		//zel_print("New transform X position | entity [%d]: %0.1f\n", entity, zel_level_get_component<zel_transform_t>(level, entity)->position.x);
+		zel_transform_t* transform = &(*transform_collection.first)[component_index];
+		transform->position.x += 1;
+		//zel_print("New transform X position | entity [%d]: %0.1f\n", transform_collection.entities[component_index], transform->position.x);
 	}
 }

@@ -7,6 +7,7 @@
 #include <zel_math.h>
 #include <zel_material.h>
 #include <zel_mesh.h>
+#include <zel_entity_collection.h>
 
 const char* zel_renderer_general_name = "general_renderer";
 
@@ -41,16 +42,20 @@ void zel_renderer_general_update(zel_level_t* level, float delta_time)
 	//	}
 	//}
 
-	for (zel_entity_id camera_entity : zel_entities_list<zel_camera_t>(level))
+	std::vector<zel_entity_id> entity1_collection = zel_entity_collection_create_single<zel_camera_t>(level);
+	for (size_t collection_index = 0; collection_index < entity1_collection.size(); collection_index++)
 	{
+		zel_entity_id camera_entity = entity1_collection[collection_index];
 		zel_camera_t* camera = zel_level_get_component<zel_camera_t>(level, camera_entity);
 		zel_framebuffer_bind(camera->framebuffer_id);
 		zel_set_viewport(0, 0, game_resolution_x, game_resolution_y);
 		zel_clear_screen(0.03f, 0.07f, 0.21f, 1.0f);
 		zel_clear_depth();
 
-		for (zel_entity_id entity : zel_entities_list<zel_transform_t, zel_material_t, zel_mesh_t>(level))
+		std::vector<zel_entity_id> entity_collection = zel_entity_collection_create<zel_transform_t, zel_material_t, zel_mesh_t>(level);
+		for (size_t collection_index = 0; collection_index < entity_collection.size(); collection_index++)
 		{
+			zel_entity_id entity = entity_collection[collection_index];
 			zel_material_t* material_of_entity = zel_level_get_component<zel_material_t>(level, entity);
 			zel_material_set_camera_uniforms(material_of_entity, camera->view, camera->projection);
 
