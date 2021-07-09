@@ -56,8 +56,6 @@ void zel_renderer_general_update(zel_level_t* level, float delta_time)
 		for (size_t collection_index = 0; collection_index < entity_collection.size(); collection_index++)
 		{
 			zel_entity_id entity = entity_collection[collection_index];
-			zel_material_t* material_of_entity = zel_level_get_component<zel_material_t>(level, entity);
-			zel_material_set_camera_uniforms(material_of_entity, camera->view, camera->projection);
 
 			zel_transform_t* transform_of_entity = zel_level_get_component<zel_transform_t>(level, entity);
 			glm::vec3 position = glm::vec3(
@@ -77,6 +75,8 @@ void zel_renderer_general_update(zel_level_t* level, float delta_time)
 				glm::floor(transform_of_entity->scale.z)
 			));
 
+			zel_material_t* material_of_entity = zel_level_get_component<zel_material_t>(level, entity);
+			zel_material_set_camera_uniforms(material_of_entity, camera->view, camera->projection);
 			zel_material_set_model(material_of_entity, model);
 
 			zel_mesh_t* mesh = zel_level_get_component<zel_mesh_t>(level, entity);
