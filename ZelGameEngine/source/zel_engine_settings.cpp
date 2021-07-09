@@ -3,5 +3,5 @@
 uint8_t zel_shutdown_engine = 0;
 
 uint8_t zel_major_version = 0;
-uint8_t zel_minor_version = 3;
+uint8_t zel_minor_version = 4;
 uint32_t zel_build_number = 0;
