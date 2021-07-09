@@ -126,6 +126,9 @@
     <ClInclude Include="include\zel_component_collection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\zel_duo_collection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platforms\windows\source\zel_windows_window.cpp">

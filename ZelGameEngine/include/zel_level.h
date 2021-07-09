@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <queue>
 #include <typeinfo>
+#include <typeindex>
 
 typedef struct zel_level_t _zel_level_t;
 typedef void(*zel_system_t)(_zel_level_t* level, float delta_time);
@@ -27,7 +28,7 @@ struct zel_level_t
 
 	////game state:
 	//components
-	std::unordered_map<std::string, ZelComponentBase*> components;
+	std::unordered_map<std::type_index, ZelComponentBase*> components;
 
 	//systems
 	std::unordered_map<std::string, zel_system_t> systems;
@@ -51,8 +52,8 @@ void zel_level_unregister_system(zel_level_t* level, const char* system_name);
 template <typename T>
 void zel_level_register_component(zel_level_t* level)
 {
-	std::string type_name = typeid(T).name();
-	if (level->components.find(type_name) != level->components.end())
+	std::type_index type_index = std::type_index(typeid(T));
+	if (level->components.find(type_index) != level->components.end())
 	{
 		//The component type is already registered
 		return;
@@ -60,7 +61,7 @@ void zel_level_register_component(zel_level_t* level)
 
 	ZelComponent<T>* new_component_type = new ZelComponent<T>();
 	ZelComponentBase* base_component_type = new_component_type;
-	level->components.insert({ type_name, base_component_type });
+	level->components.insert({ type_index, base_component_type });
 }
 
 /**
@@ -71,8 +72,8 @@ void zel_level_register_component(zel_level_t* level)
 template <typename T>
 void zel_level_register_component_with_destroy(zel_level_t* level, void (*destroy_function)(T*))
 {
-	std::string type_name = typeid(T).name();
-	if (level->components.find(type_name) != level->components.end())
+	std::type_index type_index = std::type_index(typeid(T));
+	if (level->components.find(type_index) != level->components.end())
 	{
 		//The component type is already registered
 		return;
@@ -81,7 +82,7 @@ void zel_level_register_component_with_destroy(zel_level_t* level, void (*destro
 	ZelComponent<T>* new_component_type = new ZelComponent<T>();
 	new_component_type->destroy_function = destroy_function;
 	ZelComponentBase* base_component_type = new_component_type;
-	level->components.insert({ type_name, base_component_type });
+	level->components.insert({ type_index, base_component_type });
 }
 
 /**
@@ -90,8 +91,8 @@ void zel_level_register_component_with_destroy(zel_level_t* level, void (*destro
 template <typename T>
 void zel_level_add_component(zel_level_t* level, zel_entity_id entity, T component)
 {
-	std::string type_name = std::string(typeid(T).name());
-	ZelComponent<T>* component_type = (ZelComponent<T>*)(level->components[type_name]);
+	std::type_index type_index = std::type_index(typeid(T));
+	ZelComponent<T>* component_type = (ZelComponent<T>*)(level->components[type_index]);
 
 	component_type->create(entity, component);
 }
@@ -104,25 +105,23 @@ void zel_level_add_component(zel_level_t* level, zel_entity_id entity, T compone
 template <typename T>
 T* zel_level_get_component(zel_level_t* level, zel_entity_id entity)
 {
-	std::string type_name = std::string(typeid(T).name());
-	ZelComponent<T>* component_type = (ZelComponent<T>*)(level->components[type_name]);
+	std::type_index type_index = std::type_index(typeid(T));
+	ZelComponent<T>* component_type = (ZelComponent<T>*)(level->components[type_index]);
 
 	return component_type->get_component(entity);
 }
 
-template <typename... T>
+template <typename A, typename... T>
 bool zel_level_has_components(zel_level_t* level, zel_entity_id entity)
 {
-	//PROFILE_FUNCTION();
+	std::type_index component_types[] = { std::type_index(typeid(A)), std::type_index(typeid(T))... };
 
-	std::string component_names[] = { "", std::string(typeid(T).name())... };
-
-	uint32_t types_size = sizeof...(T);
+	uint32_t types_size = sizeof...(T) + 1;
 	std::vector<ZelComponentBase*> type_bases;
-	for (size_t i = 1; i < types_size + 1; i++)
+	for (size_t i = 0; i < types_size; i++)
 	{
 		//zel_print("Printing component template names: %s\n", component_names[i].c_str());
-		type_bases.push_back(level->components[component_names[i]]);
+		type_bases.push_back(level->components[component_types[i]]);
 	}
 
 	for (size_t j = 0; j < types_size; j++)

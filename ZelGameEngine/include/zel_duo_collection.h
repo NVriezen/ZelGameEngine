@@ -8,62 +8,66 @@
 #include <string>
 
 template <typename A, typename B, typename C, typename D>
-struct zel_component_collection4
+struct zel_duo_collection4
 {
 	uint32_t length;
 	std::vector<A*> first;
 	std::vector<B*> second;
 	std::vector<C*> third;
 	std::vector<D*> fourth;
+	std::vector<zel_entity_id> entities;
 };
 
 template <typename A, typename B, typename C>
-struct zel_component_collection3
+struct zel_duo_collection3
 {
 	uint32_t length;
 	std::vector<A*> first;
 	std::vector<B*> second;
 	std::vector<C*> third;
+	std::vector<zel_entity_id> entities;
 };
 
 template <typename A, typename B>
-struct zel_component_collection2
+struct zel_duo_collection2
 {
 	uint32_t length;
 	std::vector<A*> first;
 	std::vector<B*> second;
+	std::vector<zel_entity_id> entities;
 };
 
 template <typename A>
-struct zel_component_collection
+struct zel_duo_collection
 {
 	uint32_t length;
 	std::vector<A>* first;
+	std::vector<zel_entity_id> entities;
 };
 
 template <typename A>
-zel_component_collection<A> zel_component_collection_create(zel_level_t* level)
+zel_duo_collection<A> zel_duo_collection_create(zel_level_t* level)
 {
 	std::type_index component_type = std::type_index(typeid(A));
 	ZelComponent<A>* component_container = (ZelComponent<A>*)level->components[component_type];
 
-	zel_component_collection<A> collection;
+	zel_duo_collection<A> collection;
 	collection.first = &component_container->components;
-	collection.length = component_container->total_components() + 1;
 
-	//zel_generational_ptr* component_to_entity = level->components[component_type]->component_to_entity;
-	//for (size_t component_index = 0; component_index < amount_of_components; component_index++)
-	//{
-	//	zel_entity_id entity = component_to_entity[component_index].id;
-	//	collection.entities.push_back(entity);
-	//}
-	//collection.length = amount_of_components;
+	zel_generational_ptr* component_to_entity = level->components[component_type]->component_to_entity;
+	uint32_t amount_of_components = component_container->total_components() + 1;
+	for (size_t component_index = 0; component_index < amount_of_components; component_index++)
+	{
+		zel_entity_id entity = component_to_entity[component_index].id;
+		collection.entities.push_back(entity);
+	}
+	collection.length = amount_of_components;
 
 	return collection;
 }
 
 template <typename A, typename B>
-zel_component_collection2<A, B> zel_component_collection_create(zel_level_t* level)
+zel_duo_collection2<A, B> zel_duo_collection_create(zel_level_t* level)
 {
 	std::type_index component_types[] = { std::type_index(typeid(A)), std::type_index(typeid(B)) };
 
@@ -84,15 +88,16 @@ zel_component_collection2<A, B> zel_component_collection_create(zel_level_t* lev
 	uint32_t amount_a = level->components[component_type_a]->total_components();
 	uint32_t amount_b = level->components[component_type_b]->total_components();
 	uint8_t index = (amount_b <= amount_a);
-	lowest_amount_components = (amount_a < amount_b)*amount_a + index*amount_b;
+	lowest_amount_components = (amount_a < amount_b)*amount_a + index * amount_b;
 
-	zel_component_collection2<A, B> collection;
+	zel_duo_collection2<A, B> collection;
 	collection.length = lowest_amount_components - 1;
 
 	zel_generational_ptr* component_to_entity = level->components[component_names[index]]->component_to_entity;
 	for (size_t component_index = 1; component_index < lowest_amount_components + 1; component_index++)
 	{
 		zel_entity_id entity = component_to_entity[component_index].id;
+		collection.entities.push_back(entity);
 		collection.first.push_back(zel_level_get_component<A>(level, entity));
 		collection.second.push_back(zel_level_get_component<B>(level, entity));
 	}
@@ -101,7 +106,7 @@ zel_component_collection2<A, B> zel_component_collection_create(zel_level_t* lev
 }
 
 template <typename A, typename B, typename C>
-zel_component_collection3<A, B, C> zel_component_collection_create(zel_level_t* level)
+zel_duo_collection3<A, B, C> zel_duo_collection_create(zel_level_t* level)
 {
 	std::type_index component_types[] = { std::type_index(typeid(A)), std::type_index(typeid(B)), std::type_index(typeid(C)) };
 
@@ -117,13 +122,14 @@ zel_component_collection3<A, B, C> zel_component_collection_create(zel_level_t* 
 		}
 	}
 
-	zel_component_collection3<A, B, C> collection;
+	zel_duo_collection3<A, B, C> collection;
 	collection.length = lowest_amount_components - 1;
 
 	zel_generational_ptr* component_to_entity = level->components[component_types[index]]->component_to_entity;
 	for (size_t component_index = 1; component_index < lowest_amount_components + 1; component_index++)
 	{
 		zel_entity_id entity = component_to_entity[component_index].id;
+		collection.entities.push_back(entity);
 		collection.first.push_back(zel_level_get_component<A>(level, entity));
 		collection.second.push_back(zel_level_get_component<B>(level, entity));
 		collection.third.push_back(zel_level_get_component<C>(level, entity));
@@ -133,7 +139,7 @@ zel_component_collection3<A, B, C> zel_component_collection_create(zel_level_t* 
 }
 
 template <typename A, typename B, typename C, typename D>
-zel_component_collection4<A, B, C, D> zel_component_collection_create(zel_level_t* level)
+zel_duo_collection4<A, B, C, D> zel_duo_collection_create(zel_level_t* level)
 {
 	std::type_index component_types[] = { std::type_index(typeid(A)), std::type_index(typeid(B)), std::type_index(typeid(C)), std::type_index(typeid(D)) };
 
@@ -149,13 +155,14 @@ zel_component_collection4<A, B, C, D> zel_component_collection_create(zel_level_
 		}
 	}
 
-	zel_component_collection4<A, B, C, D> collection;
+	zel_duo_collection4<A, B, C, D> collection;
 	collection.length = lowest_amount_components - 1;
 
 	zel_generational_ptr* component_to_entity = level->components[component_types[index]]->component_to_entity;
 	for (size_t component_index = 1; component_index < lowest_amount_components + 1; component_index++)
 	{
 		zel_entity_id entity = component_to_entity[component_index].id;
+		collection.entities.push_back(entity);
 		collection.first.push_back(zel_level_get_component<A>(level, entity));
 		collection.second.push_back(zel_level_get_component<B>(level, entity));
 		collection.third.push_back(zel_level_get_component<C>(level, entity));

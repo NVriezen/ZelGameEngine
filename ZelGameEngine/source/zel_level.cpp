@@ -11,7 +11,7 @@ zel_level_t* zel_level_create(const char* level_name)
 
 void zel_level_destroy(zel_level_t* level)
 {
-	std::unordered_map<std::string, ZelComponentBase*>::iterator level_components_iterator = level->components.begin();
+	std::unordered_map<std::type_index, ZelComponentBase*>::iterator level_components_iterator = level->components.begin();
 	while (level_components_iterator != level->components.end())
 	{
 		level_components_iterator->second->free();
@@ -44,7 +44,7 @@ void zel_level_destroy_entity(zel_level_t* level, zel_entity_id entity)
 	level->entities[entity_index] += 1;
 	level->empty_entities_spots.push(entity_index);
 
-	std::unordered_map<std::string, ZelComponentBase*>::iterator level_components_iterator = level->components.begin();
+	std::unordered_map<std::type_index, ZelComponentBase*>::iterator level_components_iterator = level->components.begin();
 	while (level_components_iterator != level->components.end())
 	{
 		level_components_iterator->second->destroy(entity);

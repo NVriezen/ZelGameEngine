@@ -10,10 +10,10 @@
 template <typename T>
 std::vector<zel_entity_id> zel_entity_collection_create_single(zel_level_t* level)
 {
-	std::string component_name = std::string(typeid(T).name());
-	zel_generational_ptr* component_to_entity = level->components[component_name]->component_to_entity;
-	zel_generational_ptr* entity_to_component = level->components[component_name]->entity_to_component;
-	uint32_t components_amount = level->components[component_name]->total_components();
+	std::type_index component_type = std::type_index(typeid(T));
+	zel_generational_ptr* component_to_entity = level->components[component_type]->component_to_entity;
+	zel_generational_ptr* entity_to_component = level->components[component_type]->entity_to_component;
+	uint32_t components_amount = level->components[component_type]->total_components();
 
 	std::vector<zel_entity_id> collection;
 	for (size_t component_index = 1; component_index < components_amount + 1; component_index++)
@@ -33,20 +33,20 @@ std::vector<zel_entity_id> zel_entity_collection_create_single(zel_level_t* leve
 	return collection;
 }
 
-template <typename... T>
+template <typename A, typename... T>
 std::vector<zel_entity_id> zel_entity_collection_create(zel_level_t* level)
 {
 	std::vector<zel_entity_id> collection;
 	uint32_t total_entities = level->entities.size();
 	bool* entity_map = new bool[total_entities] { false };
 
-	std::string component_names[] = { "", std::string(typeid(T).name())... };
-	uint32_t types_size = sizeof...(T);
+	std::type_index component_types[] = { std::type_index(typeid(A)), std::type_index(typeid(T))... };
+	uint32_t types_size = sizeof...(T)+1;
 	uint32_t lowest_amount_components = -1;
 	uint8_t index = 0;
-	for (uint8_t i = 1; i < types_size + 1; i++)
+	for (uint8_t i = 0; i < types_size; i++)
 	{
-		uint32_t amount = level->components[component_names[i]]->total_components();
+		uint32_t amount = level->components[component_types[i]]->total_components();
 		if (amount < lowest_amount_components)
 		{
 			lowest_amount_components = amount;
@@ -54,8 +54,8 @@ std::vector<zel_entity_id> zel_entity_collection_create(zel_level_t* level)
 		}
 	}
 
-	zel_generational_ptr* component_to_entity = level->components[component_names[index]]->component_to_entity;
-	zel_generational_ptr* entity_to_component = level->components[component_names[index]]->entity_to_component;
+	zel_generational_ptr* component_to_entity = level->components[component_types[index]]->component_to_entity;
+	zel_generational_ptr* entity_to_component = level->components[component_types[index]]->entity_to_component;
 	for (size_t component_index = 1; component_index < lowest_amount_components + 1; component_index++)
 	{
 		zel_ecs_id entity_id = component_to_entity[component_index].id;

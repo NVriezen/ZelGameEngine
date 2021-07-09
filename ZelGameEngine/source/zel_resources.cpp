@@ -1,6 +1,6 @@
 #include <zel_resources.h>
 #include <zel_level.h>
-#include <zel_component_collection.h>
+#include <zel_duo_collection.h>
 
 #include <zel_shader.h>
 #include <zel_render_api.h>
@@ -22,7 +22,7 @@ void zel_resources_init()
 //Hide this one from api?
 zel_resource_id zel_resources_add(const char* path, void* pointer_to_resource, resource_destructor destructor_function)
 {
-	zel_component_collection<zel_resource_t> resources = zel_component_collection_create<zel_resource_t>(resource_level);
+	zel_duo_collection<zel_resource_t> resources = zel_duo_collection_create<zel_resource_t>(resource_level);
 	for (size_t component_index = 1; component_index < resources.length; component_index++)
 	{
 		zel_resource_t* resource = &(*resources.first)[component_index];
@@ -46,7 +46,7 @@ zel_resource_id zel_resources_add(const char* path, void* pointer_to_resource, r
 
 zel_resource_id zel_resources_get_loaded(const char* path)
 {
-	zel_component_collection<zel_resource_t> resources = zel_component_collection_create<zel_resource_t>(resource_level);
+	zel_duo_collection<zel_resource_t> resources = zel_duo_collection_create<zel_resource_t>(resource_level);
 	for (size_t component_index = 1; component_index < resources.length; component_index++)
 	{
 		zel_resource_t* resource = &(*resources.first)[component_index];
